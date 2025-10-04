@@ -1,4 +1,4 @@
-﻿/* General Styling */
+/* General Styling */
 :root {
     --primary-bg-color: #1a1a1a;
     --secondary-bg-color: #222222;
@@ -202,9 +202,7 @@ line-height: 1.2;
 .hero-image img:hover {
     transform: scale(1.05);
 }
-.hero-image:hover .overlay {
-    opacity: 1;
-}
+
 /* About Me Section */
 .about-me {
     background-color: var(--secondary-bg-color);
@@ -391,6 +389,7 @@ margin:(0,0,0,0.5)
     align-items: center;
     opacity: 0;
     transition: opacity 0.5s ease;
+    pointer-events: none;
 }
 
 .portfolio-item:hover .overlay {
@@ -407,6 +406,21 @@ margin:(0,0,0,0.5)
     color: var(--accent-color);
     font-size: 1em;
 }
+
+/* Fullscreen Styling */
+:fullscreen,
+::-webkit-full-screen,
+::-moz-full-screen {
+    background-color: #000;
+}
+
+img:fullscreen,
+video:fullscreen {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 
 /* Contact Section */
 .contact-section {
@@ -487,64 +501,6 @@ margin:(0,0,0,0.5)
     color: #b0b0b0;
 }
 
-/* Image Modal Styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 2000; /* Sit on top */
-    padding-top: 60px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-    animation-name: zoom;
-    animation-duration: 0.6s;
-}
-
-#caption {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-    text-align: center;
-    color: #ccc;
-    padding: 10px 0;
-    height: 150px;
-}
-
-/* Add Animation */
-@keyframes zoom {
-    from {transform: scale(0.1)}
-    to {transform: scale(1)}
-}
-
-/* The Close Button */
-.close-button {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 
 /* Responsive Design */
@@ -591,9 +547,7 @@ margin:(0,0,0,0.5)
         margin: 0 auto 10px;
     }
 
-    .modal-content {
-        width: 90%;
-    }
+
 }
 
 @media (max-width: 768px) {
@@ -638,8 +592,4 @@ margin:(0,0,0,0.5)
         font-size: 2.5em;
         margin: 0 10px;
     }
-
 }
-
-
-
