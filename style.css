@@ -202,7 +202,9 @@ line-height: 1.2;
 .hero-image img:hover {
     transform: scale(1.05);
 }
-
+.hero-image:hover .overlay {
+    opacity: 1;
+}
 /* About Me Section */
 .about-me {
     background-color: var(--secondary-bg-color);
@@ -636,4 +638,5 @@ margin:(0,0,0,0.5)
         font-size: 2.5em;
         margin: 0 10px;
     }
+
 }
