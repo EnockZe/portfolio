@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
            });
-    document.addEventListener('DOMContentLoaded', function() {
  var portfolioItem = [].slice.call(document.querySelectorAll("video.portfolio-items"));
         if("IntersectionObserver" in window){
             var portfolioItemObserver = new
@@ -35,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 portfolioItemObserver.observe(video);
             });
         }
-    });
+
 
     // Optional: Add a class to the header when scrolled to make it more prominent
     const header = document.querySelector('.header');
@@ -106,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
 
 
 
