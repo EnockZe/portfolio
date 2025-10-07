@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth'
             });
         });
-        var portfolio= [].slice.call(document.querySelectorAll("video.portfolio-items"));
+        var portfolioItem = [].slice.call(document.querySelectorAll("video.portfolio-items"));
         if("IntersectionObserver" in window){
-            var portfolioObserver = new
-                IntersectionObserver(function(enteries, observer){
+            var portfolioItemObserver = new
+                IntersectionObserver(function(entries, observer){
                     entries.forEach(function(videoEntry){
                         if(videoEntry.isIntersecting){
                             var video = videoEntry.target;
@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                 });
-            portfolioitem.forEach(function(video){
-                portfolioObserver.observer(video);
+            portfolioItem.forEach(function(video){
+                portfolioItemObserver.observe(video);
             });
         }
     });
@@ -104,3 +104,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
