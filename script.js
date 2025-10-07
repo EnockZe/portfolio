@@ -9,6 +9,33 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
            });
+    document.addEventListener('DOMContentLoaded', function() {
+ var portfolioItem = [].slice.call(document.querySelectorAll("video.portfolio-items"));
+        if("IntersectionObserver" in window){
+            var portfolioItemObserver = new
+                IntersectionObserver(function(entries, observer){
+                    entries.forEach(function(videoEntry){
+                        if(videoEntry.isIntersecting){
+                            var video = videoEntry.target;
+
+                            for (var source in video.children){
+                                var videoSource = video.children[source];
+
+                                if(typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE"){
+                                    videoSource.src = videoSource.dataset.src;
+                                }
+                            }
+                            video.load();
+
+                            observer.unobserve(video);
+                        }
+                    });
+                });
+            portfolioItem.forEach(function(video){
+                portfolioItemObserver.observe(video);
+            });
+        }
+    });
 
     // Optional: Add a class to the header when scrolled to make it more prominent
     const header = document.querySelector('.header');
@@ -79,5 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
 
 
