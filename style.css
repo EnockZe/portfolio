@@ -407,31 +407,32 @@ p {
 
 /* --- MODAL STYLING --- */
 .modal {
-    display: none; /* IMPORTANT: Hidden by default, JS will set to 'flex' on click */
-    position: fixed; /* Stay in place over content */
-    z-index: 1050; /* IMPORTANT: Higher than header to ensure visibility */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1050; /* IMPORTANT: Increased z-index to be higher than header (1000) */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Dark semi-transparent background */
-    
-    /* Flexbox for perfect centering of content */
-    display: flex; /* Will be activated by JS */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    /* REMOVED: padding-top: 60px; -- This was pushing content down when using flexbox centering */
+    display: flex; /* Use flexbox for centering */
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
 }
 
 .modal-content {
-    display: block; /* Ensures content behaves like a block element */
+    margin: auto; /* Fallback, but flexbox will primarily handle positioning */
+    display: block;
     width: 80%;
     max-width: 700px; /* Default max-width for image content */
     object-fit: contain; /* Maintain aspect ratio and fit within bounds */
     max-height: 90vh; /* Prevent content from exceeding viewport height */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
-    background-color: transparent; /* Ensures the dark modal background is seen */
+    /* IMPORTANT: Ensure transparent background if you want to see the main modal background */
+    background-color: transparent;
 }
 
 /* Specific styles for the video modal content */
@@ -446,14 +447,14 @@ p {
 /* Close button style for both modals */
 .close-button {
     position: absolute;
-    top: 20px; /* Positioned from the top of the viewport */
+    top: 20px; /* Adjusted top to be visually appealing without padding-top on modal */
     right: 35px;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
     cursor: pointer;
-    z-index: 1051; /* IMPORTANT: Ensure close button is even higher than modal content */
+    z-index: 1051; /* IMPORTANT: Ensure close button is even higher than modal */
 }
 
 .close-button:hover,
@@ -695,3 +696,4 @@ video:fullscreen {
         margin: 0 10px;
     }
 }
+
