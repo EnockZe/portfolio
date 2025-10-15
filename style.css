@@ -39,7 +39,7 @@ section {
 
 h1, h2, h3, h4 {
     font-family: 'Oswald', sans-serif;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Applied to headings for consistency */
     margin-bottom: 20px;
 }
 
@@ -47,11 +47,12 @@ h2 {
     font-size: 3.5em;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color: var(--text-color); /* Overridden to text-color for main section titles */
 }
 
 h3 {
     font-size: 1.8em;
-    color: var(--text-color);
+    color: var(--text-color); /* Default for h3 */
     margin-bottom: 10px;
 }
 
@@ -95,20 +96,15 @@ p {
 }
 
 .header .logo {
-font-family: Serif Fonts;
-font-size: 2.5em;
-  font-weight: 700;
-  color: var(--accent-color);
- letter-spacing: 0.05em;
-line-height: 1.2;
-  margin: 0;
- 
-  padding: 0;
- display: inline-block;
-    font-size: 2em;
+    font-family: 'Oswald', sans-serif; /* Changed to Oswald for consistency */
+    font-size: 2.5em;
     font-weight: 700;
     color: var(--accent-color);
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
 }
 
 .navbar ul {
@@ -151,10 +147,10 @@ line-height: 1.2;
 /* Hero Section */
 .hero {
     background-color: var(--primary-bg-color);
-    padding: 150px 0 100px; /* Adjust padding for fixed header */
+    padding: 150px 0 100px;
     display: flex;
     align-items: center;
-    min-height: 100vh; /* Make it full viewport height */
+    min-height: 100vh;
     text-align: left;
 }
 
@@ -162,12 +158,15 @@ line-height: 1.2;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap;
 }
 
 .hero-content {
     flex: 1;
     min-width: 400px;
+    opacity: 0; /* For JS animation */
+    transform: translateY(20px); /* For JS animation */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .hero-content p {
@@ -193,10 +192,12 @@ line-height: 1.2;
 
 .hero-image img {
     max-width: 100%;
-    border-radius: 50%; /* Make it circular like in the example */
+    border-radius: 50%;
     border: 5px solid var(--accent-color);
-    box-shadow: 0 0 20px rgba(255, 77, 148, 0.5); /* Glowing effect */
+    box-shadow: 0 0 20px rgba(255, 77, 148, 0.5);
     transition: transform 0.5s ease;
+    opacity: 0; /* For JS animation */
+    transform: scale(0.9); /* For JS animation */
 }
 
 .hero-image img:hover {
@@ -215,7 +216,7 @@ line-height: 1.2;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap-reverse; /* Image on right, text on left for visual balance */
+    flex-wrap: wrap-reverse;
 }
 
 .about-content {
@@ -224,7 +225,7 @@ line-height: 1.2;
 }
 
 .about-content h3 {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Primary accent for sub-headings */
 }
 
 .about-content h2 {
@@ -238,10 +239,10 @@ line-height: 1.2;
     display: flex;
     justify-content: center;
     align-items: center;
- max-width: 100%;
-margin:(0,0,0,0.5)
+    /* max-width: 100%; Removed, handled by img */
+    /* margin:(0,0,0,0.5) - Removed invalid CSS */
     border: 5px solid var(--accent-color);
-    box-shadow: 0 0 20px rgba(255, 77, 148, 0.5); /* Glowing effect */
+    box-shadow: 0 0 20px rgba(255, 77, 148, 0.5);
     transition: transform 0.5s ease;
 }
 
@@ -251,7 +252,6 @@ margin:(0,0,0,0.5)
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
-
 
 /* My Resume Section */
 .my-resume {
@@ -270,7 +270,7 @@ margin:(0,0,0,0.5)
 
 .resume-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Experience on left, timeline on right */
+    grid-template-columns: 1fr 2fr;
     gap: 50px;
     text-align: left;
     align-items: start;
@@ -351,28 +351,29 @@ margin:(0,0,0,0.5)
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    cursor: pointer; /* Indicate it's clickable */
+    cursor: pointer;
 }
 
 .portfolio-item img {
     width: 100%;
-    height: 250px; /* Fixed height for consistent look */
-    object-fit: cover; /* Ensures images cover the area without distortion */
-    display: block;
-    transition: transform 0.5s ease;
-}
-.portfolio-item video {
-    width: 100%;
-    height: 250px; /* Fixed height for consistent look */
-    object-fit: cover; /* Ensures images cover the area without distortion */
+    height: 250px;
+    object-fit: cover;
     display: block;
     transition: transform 0.5s ease;
 }
 
-.portfolio-item:hover img {
-    transform: scale(1.1);
+/* MODIFICATION: Unified styling for video thumbnails in portfolio grid */
+.portfolio-item video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.5s ease;
 }
-.portfolio-item:hover video {
+
+.portfolio-item:hover img,
+.portfolio-item:hover video { /* Applied hover effect to both img and video */
     transform: scale(1.1);
 }
 
@@ -389,7 +390,7 @@ margin:(0,0,0,0.5)
     align-items: center;
     opacity: 0;
     transition: opacity 0.5s ease;
-    pointer-events: none;
+    pointer-events: none; /* Allows clicks to pass through to the element underneath */
 }
 
 .portfolio-item:hover .overlay {
@@ -407,10 +408,120 @@ margin:(0,0,0,0.5)
     font-size: 1em;
 }
 
+/* --- MODAL STYLING (Unified and Enhanced) --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    padding-top: 60px; /* Space for the close button */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.modal-content {
+    margin: auto; /* Will be overridden by flexbox centering, but good fallback */
+    display: block;
+    width: 80%;
+    max-width: 700px; /* Default max-width for image content */
+    object-fit: contain; /* Maintain aspect ratio and fit within bounds */
+    max-height: 90vh; /* Prevent content from exceeding viewport height */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+}
+
+/* MODIFICATION: Specific styles for the video modal content */
+#videoModal .modal-content {
+    width: 90%; /* A little wider than images maybe */
+    max-width: 900px; /* Max width for larger screens */
+    height: auto; /* Allow height to adjust based on aspect ratio */
+    max-height: 90vh; /* Max height to prevent video from going off screen vertically */
+    object-fit: contain; /* Ensure the video content fits within the player without cropping */
+}
+
+/* Close button style */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 1001; /* Ensure close button is above modal content */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--accent-color); /* Use accent color on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Caption styles */
+#caption, #videoCaption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+}
+
+/* MODIFICATION: Specific style for the video caption */
+#videoCaption {
+    width: 90%; /* Match video content width */
+    max-width: 900px; /* Match video content max-width */
+    font-size: 1.2em; /* Slightly larger for clarity */
+}
+
+/* MODIFICATION: Styling for native video controls within the modal */
+#modalVideo::-webkit-media-controls-panel,
+#modalVideo::-webkit-media-controls-play-button,
+#modalVideo::-webkit-media-controls-volume-slider,
+#modalVideo::-webkit-media-controls-mute-button,
+#modalVideo::-webkit-media-controls-current-time-display,
+#modalVideo::-webkit-media-controls-time-remaining-display,
+#modalVideo::-webkit-media-controls-timeline,
+#modalVideo::-webkit-media-controls-fullscreen-button {
+    color: #fff; /* Ensure controls are visible on dark background */
+    filter: invert(0.1) hue-rotate(300deg); /* Optional: Tints controls to match accent color */
+}
+
+#modalVideo::-webkit-media-controls-timeline {
+    background-color: rgba(255, 255, 255, 0.3); /* Lighter background for timeline */
+}
+#modalVideo::-webkit-media-controls-current-time-display,
+#modalVideo::-webkit-media-controls-time-remaining-display {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Add shadow for readability */
+}
+
+/* Firefox specific styles for media controls */
+#modalVideo::-moz-range-track {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+#modalVideo::-moz-range-thumb {
+    background-color: var(--accent-color);
+}
+#modalVideo::-moz-progress-bar {
+    background-color: var(--accent-color);
+}
+
+
 /* Fullscreen Styling */
+/* These rules apply when an element is in native fullscreen mode */
 :fullscreen,
 ::-webkit-full-screen,
-::-moz-full-screen {
+::-moz-full-screen,
+::-ms-fullscreen { /* Added -ms- for IE/Edge */
     background-color: #000;
 }
 
@@ -418,9 +529,8 @@ img:fullscreen,
 video:fullscreen {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: contain; /* Important: maintains aspect ratio */
 }
-
 
 /* Contact Section */
 .contact-section {
@@ -546,8 +656,6 @@ video:fullscreen {
         position: static;
         margin: 0 auto 10px;
     }
-
-
 }
 
 @media (max-width: 768px) {
