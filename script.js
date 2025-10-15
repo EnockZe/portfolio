@@ -8,33 +8,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth'
             });
         });
-           });
- var portfolioItem = [].slice.call(document.querySelectorAll("video.portfolio-items"));
-        if("IntersectionObserver" in window){
-            var portfolioItemObserver = new
-                IntersectionObserver(function(entries, observer){
-                    entries.forEach(function(videoEntry){
-                        if(videoEntry.isIntersecting){
-                            var video = videoEntry.target;
+    });
 
-                            for (var source in video.children){
-                                var videoSource = video.children[source];
-
-                                if(typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE"){
-                                    videoSource.src = videoSource.dataset.src;
-                                }
+    // --- VIDEO INTERSECTION OBSERVER (Modified) ---
+    // This part helps lazy-load videos as they come into view.
+    // It's good practice, but for direct fullscreen click,
+    // we'll primarily rely on the data-video-src attribute for the modal.
+    // We target the actual <video> elements within .portfolio-item
+    var videos = [].slice.call(document.querySelectorAll(".portfolio-item video"));
+    if("IntersectionObserver" in window){
+        var videoObserver = new IntersectionObserver(function(entries, observer){
+            entries.forEach(function(videoEntry){
+                if(videoEntry.isIntersecting){
+                    var video = videoEntry.target;
+                    // Check if the video has a src already set (it might if using data-src for poster)
+                    if (!video.src) { // Only load if src is not already set
+                        for (var source of video.children){ // Use 'of' for iterating NodeList
+                            if(typeof source.tagName === "string" && source.tagName === "SOURCE" && source.dataset.src){
+                                source.src = source.dataset.src;
                             }
-                            video.load();
-
-                            observer.unobserve(video);
                         }
-                    });
-                });
-            portfolioItem.forEach(function(video){
-                portfolioItemObserver.observe(video);
+                        video.load(); // Load the video once src is set
+                    }
+                    // Optional: You can play small preview videos automatically here if desired,
+                    // but for fullscreen on click, it's better to only load them.
+                    observer.unobserve(video);
+                }
             });
-        }
-
+        });
+        videos.forEach(function(video){
+            videoObserver.observe(video);
+        });
+    }
 
     // Optional: Add a class to the header when scrolled to make it more prominent
     const header = document.querySelector('.header');
@@ -70,42 +75,101 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Image Modal Logic
-    const modal = document.getElementById('imageModal');
+    // --- IMAGE MODAL LOGIC (No changes needed here for image functionality) ---
+    const imageModal = document.getElementById('imageModal'); // Renamed from 'modal' for clarity
     const modalImage = document.getElementById('modalImage');
     const captionText = document.getElementById('caption');
-    const closeButton = document.getElementsByClassName('close-button')[0];
+    const closeImageButton = imageModal.querySelector('.close-button'); // Target specifically within imageModal
 
     document.querySelectorAll('.portfolio-item img').forEach(image => {
         image.addEventListener('click', function() {
-            modal.style.display = 'block';
-            // Use data-src if available, otherwise fallback to src
-            modalImage.src = this.dataset.src || this.src; 
-            captionText.innerHTML = this.alt; // Use alt text as caption
+            imageModal.style.display = 'block';
+            modalImage.src = this.dataset.src || this.src;
+            captionText.innerHTML = this.alt;
         });
     });
 
-    // When the user clicks on <span> (x), close the modal
-    closeButton.addEventListener('click', function() {
-        modal.style.display = 'none';
+    closeImageButton.addEventListener('click', function() {
+        imageModal.style.display = 'none';
     });
 
-    // When the user clicks anywhere outside of the image, close it
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.style.display = 'none';
+    // --- NEW: VIDEO MODAL LOGIC ---
+    const videoModal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const videoCaption = document.getElementById('videoCaption');
+    const closeVideoButton = videoModal.querySelector('.close-button'); // Target specifically within videoModal
+
+    document.querySelectorAll('.portfolio-item.video-item').forEach(videoItemDiv => {
+        videoItemDiv.addEventListener('click', function() {
+            const videoSrc = this.dataset.videoSrc; // Get from the data-video-src attribute on the div
+            if (videoSrc) {
+                videoModal.style.display = 'block';
+                modalVideo.src = videoSrc;
+                modalVideo.load(); // Load the video
+                modalVideo.play(); // Autoplay when modal opens
+
+                // Set video caption from overlay h4
+                const projectTitle = this.querySelector('.overlay h4');
+                if (projectTitle) {
+                    videoCaption.innerHTML = projectTitle.textContent;
+                } else {
+                    videoCaption.innerHTML = '';
+                }
+
+                // Request fullscreen for the video element
+                if (modalVideo.requestFullscreen) {
+                    modalVideo.requestFullscreen();
+                } else if (modalVideo.mozRequestFullScreen) { /* Firefox */
+                    modalVideo.mozRequestFullScreen();
+                } else if (modalVideo.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    modalVideo.webkitRequestFullscreen();
+                } else if (modalVideo.msRequestFullscreen) { /* IE/Edge */
+                    modalVideo.msRequestFullscreen();
+                }
+            }
+        });
+    });
+
+    closeVideoButton.addEventListener('click', function() {
+        videoModal.style.display = 'none';
+        modalVideo.pause(); // Pause video when modal closes
+        modalVideo.src = ""; // Clear source to stop download
+        if (document.fullscreenElement) { // Check if any element is in fullscreen
+            document.exitFullscreen(); // Exit fullscreen
         }
     });
 
-    // Optional: Close modal with Escape key
+
+    // --- GLOBAL MODAL CLOSING LOGIC ---
+    // When the user clicks anywhere outside of the image/video, close it
+    window.addEventListener('click', function(e) {
+        if (e.target === imageModal) {
+            imageModal.style.display = 'none';
+        }
+        if (e.target === videoModal) {
+            videoModal.style.display = 'none';
+            modalVideo.pause();
+            modalVideo.src = ""; // Clear source to stop download
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
+        }
+    });
+
+    // Optional: Close modals with Escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            modal.style.display = 'none';
+        if (e.key === 'Escape') {
+            if (imageModal.style.display === 'block') {
+                imageModal.style.display = 'none';
+            }
+            if (videoModal.style.display === 'block') {
+                videoModal.style.display = 'none';
+                modalVideo.pause();
+                modalVideo.src = ""; // Clear source to stop download
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+            }
         }
     });
-
 });
-
-
-
-
