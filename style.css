@@ -329,7 +329,7 @@ margin:(0,0,0,0.5)
 
 /* My Portfolio Section */
 .modal {
-    display: none; /* Hidden by default */
+    /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1050; /* IMPORTANT: Increased z-index to be higher than header (1000) */
     left: 0;
@@ -611,6 +611,7 @@ video:fullscreen {
         margin: 0 10px;
     }
 }
+
 
 
 
