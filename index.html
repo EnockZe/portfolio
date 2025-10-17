@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henok zelalem - Graphic Designer Portfolio</title>   
+    <title>Henok Zelalem - Graphic Designer Portfolio</title>   
+
+    <!-- Preload critical resources for faster loading -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oswald:wght@700&display=swap" as="style" crossorigin>
+    <!-- Preload Font Awesome webfont (adjust path if you host locally or use a different font weight) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+    <!-- CSS stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Load Font Awesome asynchronously to prevent render blocking -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 </head>
 <body>
 
@@ -29,12 +40,13 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <p>I AM Henok zelalem</p>
+                <p>I AM Henok Zelalem</p>
                 <h2>Graphic Designer</h2>
                 <a href="#contact" class="btn">Contact Me</a>
             </div>
             <div class="hero-image">
-                <img src="images/profile pic.jpg" alt="HENOK ZELALEM">
+                <!-- Added loading="lazy" for images outside the initial viewport -->
+                <img src="images/profile pic.jpg" alt="HENOK ZELALEM" loading="lazy">
             </div>
         </div>
     </section>
@@ -44,10 +56,11 @@
             <div class="about-content">
                 <h3>About Me</h3>
                 <h2>I am a Graphic Designer</h2>
-                <p>Hi, My name is Henok zelalem, and I am a graphic designer who believes that design can change the world. With a degree in computer science and three years of experience in the industry,  I’ve had the opportunity to work with clients in a range of industries, including hospitality, education, and entertainment. My specialties include branding, packaging design, social media graphics and user interface design. I believe that design has the power to evoke emotions and create connections, and I’m always looking for new ways to push the limits of what’s possible.</p>
-               </div>
+                <p>Hi, My name is Henok Zelalem, and I am a graphic designer who believes that design can change the world. With a degree in computer science and three years of experience in the industry, I’ve had the opportunity to work with clients in a range of industries, including hospitality, education, and entertainment. My specialties include branding, packaging design, social media graphics and user interface design. I believe that design has the power to evoke emotions and create connections, and I’m always looking for new ways to push the limits of what’s possible.</p>
+            </div>
             <div class="about-image">
-                <img src="images/profile 2.jpg" alt="About Me">
+                <!-- Added loading="lazy" -->
+                <img src="images/profile 2.jpg" alt="About Me" loading="lazy">
             </div>
         </div>
     </section>
@@ -65,7 +78,6 @@
                         <h4>bubble pictures and event organizer</h4>
                         <p>Graphic Designer (2022 - 2025)</p>
                     </div>
-                   
                 </div>
             </div>
         </div>
@@ -76,221 +88,367 @@
             <h3>My Portfolio</h3>
             <h2>My Latest Works</h2>
             <div class="portfolio-grid">
+                <!-- Portfolio Item with Lazy Loading, WebP support, and responsive srcset -->
                 <div class="portfolio-item">
-                    <img src="images/IMG_20250531_223231_919.jpg" data-src="images/IMG_20250531_223231_919.jpg" alt="Design 1">
+                    <picture>
+                        <source srcset="images/IMG_20250531_223231_919.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/IMG_20250531_223231_919.jpg" 
+                             data-srcset="images/IMG_20250531_223231_919_small.jpg 480w, images/IMG_20250531_223231_919.jpg 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 1" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 1</h4>
                         <p>Branding</p>
                     </div>
                 </div>
+                <!-- Repeat for other image portfolio items -->
                 <div class="portfolio-item">
-                    <img src="images/IMG_20250531_223239_071.jpg" data-src="images/IMG_20250531_223239_071.jpg" alt="Design 2">
+                    <picture>
+                        <source srcset="images/IMG_20250531_223239_071.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/IMG_20250531_223239_071.jpg" 
+                             data-srcset="images/IMG_20250531_223239_071_small.jpg 480w, images/IMG_20250531_223239_071.jpg 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 2" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 2</h4>
                         <p>Web Design</p>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="images/Orange Modern Music Night Instagram Post_20250603_232912_0000.png" data-src="images/Orange Modern Music Night Instagram Post_20250603_232912_0000.png" alt="Design 3">
+                    <picture>
+                        <source srcset="images/Orange Modern Music Night Instagram Post_20250603_232912_0000.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/Orange Modern Music Night Instagram Post_20250603_232912_0000.png" 
+                             data-srcset="images/Orange Modern Music Night Instagram Post_20250603_232912_0000_small.png 480w, images/Orange Modern Music Night Instagram Post_20250603_232912_0000.png 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 3" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 3</h4>
                         <p>Illustration</p>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="images/Pink and Maroon Spa Calming Beauty & Spa Flyer.png" data-src="images/Pink and Maroon Spa Calming Beauty & Spa Flyer.png" alt="Design 4">
+                    <picture>
+                        <source srcset="images/Pink and Maroon Spa Calming Beauty & Spa Flyer.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/Pink and Maroon Spa Calming Beauty & Spa Flyer.png" 
+                             data-srcset="images/Pink and Maroon Spa Calming Beauty & Spa Flyer_small.png 480w, images/Pink and Maroon Spa Calming Beauty & Spa Flyer.png 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>
-		</div>
-              <!--  <div class="portfolio-item">
-                    <video src="images/Purple.mp4" alt="Design 5" autoplay muted>
+                </div>
+
+                <!-- Video portfolio item with multiple sources and lazy loading -->
+                <div class="portfolio-item video-item">
+                    <video class="lazyload-video" controls preload="metadata" poster="images/Purple_poster.jpg" loading="lazy">
+                        <!-- Provide webm first for better compression/support -->
+                        <source data-src="images/Purple.webm" type="video/webm">
+                        <source data-src="images/Purple.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 5</h4>
                         <p>Packaging</p>
                     </div>
-                </div> -->
-				<div class="portfolio-item video-item" data-video-src="images/Purple.mp4">
-    <video src="images/Purple.mp4" controls preload="metadata" poster="images/Purple_poster.jpg"></video>
-    <div class="overlay">
-        <h4>Project Title 5</h4>
-        <p>Packaging</p>
-    </div>
-</div>
+                </div>
 
                 <div class="portfolio-item">
-                    <img src="images/White & Brown Minimalist Ice Coffee Latte Instagram Post (1).png" data-src="images/White & Brown Minimalist Ice Coffee Latte Instagram Post (1).png" alt="Design 4">
+                    <picture>
+                        <source srcset="images/White & Brown Minimalist Ice Coffee Latte Instagram Post (1).webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/White & Brown Minimalist Ice Coffee Latte Instagram Post (1).png" 
+                             data-srcset="images/White & Brown Minimalist Ice Coffee Latte Instagram Post (1)_small.png 480w, images/White & Brown Minimalist Ice Coffee Latte Instagram Post (1).png 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>
-                    </div>
+                </div>
 
                 <div class="portfolio-item">
-                    <img src="images/Brown and Beige Classy Chic Iced Coffee Instagram Story.png" data-src="images/Brown and Beige Classy Chic Iced Coffee Instagram Story.png" alt="Design 4">
+                    <picture>
+                        <source srcset="images/Brown and Beige Classy Chic Iced Coffee Instagram Story.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/Brown and Beige Classy Chic Iced Coffee Instagram Story.png" 
+                             data-srcset="images/Brown and Beige Classy Chic Iced Coffee Instagram Story_small.png 480w, images/Brown and Beige Classy Chic Iced Coffee Instagram Story.png 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>  
-		 </div>
+                </div>
 
                 <div class="portfolio-item">
-                    <img src="images/Black Orange Pizza Promotion Instagram Post Portrait.png" data-src="images/Black Orange Pizza Promotion Instagram Post Portrait.png" alt="Design 4">
+                    <picture>
+                        <source srcset="images/Black Orange Pizza Promotion Instagram Post Portrait.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/Black Orange Pizza Promotion Instagram Post Portrait.png" 
+                             data-srcset="images/Black Orange Pizza Promotion Instagram Post Portrait_small.png 480w, images/Black Orange Pizza Promotion Instagram Post Portrait.png 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>
-		 </div>
+                </div>
 
+                <!-- Video item with lazy loading -->
                 <div class="portfolio-item">
-                    <video src="images/Brown Aesthetic Cafe Open Sign Instagram Post (1).mp4" data-src="images/Brown Aesthetic Cafe Open Sign Instagram Post (1).mp4" alt="Design 5" autoplay muted>
+                    <video class="lazyload-video" controls preload="metadata" poster="images/Brown Aesthetic Cafe Open Sign Instagram Post (1)_poster.jpg" loading="lazy">
+                        <source data-src="images/Brown Aesthetic Cafe Open Sign Instagram Post (1).webm" type="video/webm">
+                        <source data-src="images/Brown Aesthetic Cafe Open Sign Instagram Post (1).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>
- 			</div>
+                </div>
 
                 <div class="portfolio-item">
-                    <img src="images/White & Brown Minimalist Ice Coffee Latte Instagram Post.png" data-src="images/White & Brown Minimalist Ice Coffee Latte Instagram Post.png" alt="Design 4">
+                    <picture>
+                        <source srcset="images/White & Brown Minimalist Ice Coffee Latte Instagram Post.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/White & Brown Minimalist Ice Coffee Latte Instagram Post.png" 
+                             data-srcset="images/White & Brown Minimalist Ice Coffee Latte Instagram Post_small.png 480w, images/White & Brown Minimalist Ice Coffee Latte Instagram Post.png 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>
-		</div>
+                </div>
 
                 <div class="portfolio-item">
-                    <img src="images/pictures.jpg" data-src="images/pictures.jpg" alt="Design 4">
+                    <picture>
+                        <source srcset="images/pictures.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/pictures.jpg" 
+                             data-srcset="images/pictures_small.jpg 480w, images/pictures.jpg 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>
-		</div>
+                </div>
 
                 <div class="portfolio-item">
-                    <img src="images/IMG_.jpg" data-src="images/IMG_.jpg" alt="Design 4">
+                    <picture>
+                        <source srcset="images/IMG_.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/IMG_.jpg" 
+                             data-srcset="images/IMG__small.jpg 480w, images/IMG_.jpg 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>
-		</div>
+                </div>
 
                 <div class="portfolio-item">
-                    <img src="images/IMG_2.jpg" data-src="images/IMG_2.jpg" alt="Design 4">
+                    <picture>
+                        <source srcset="images/IMG_2.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/IMG_2.jpg" 
+                             data-srcset="images/IMG_2_small.jpg 480w, images/IMG_2.jpg 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>
-		  </div>
+                </div>
               
-				<div class="portfolio-item">
-                    <video src="images/VID_.mp4" alt="Design 5" autoplay muted>
+                <!-- Video item with lazy loading -->
+                <div class="portfolio-item">
+                    <video class="lazyload-video" controls preload="metadata" poster="images/VID__poster.jpg" loading="lazy">
+                        <source data-src="images/VID_.webm" type="video/webm">
+                        <source data-src="images/VID_.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 5</h4>
                         <p>Packaging</p>
                     </div>
+                </div> 
 
-		</div> 
-              <div class="portfolio-item">
-                    <video src="images/0001-0155.mp4" alt="Design 4" autoplay muted>
+                <!-- Video item with lazy loading -->
+                <div class="portfolio-item">
+                    <video class="lazyload-video" controls preload="metadata" poster="images/0001-0155_poster.jpg" loading="lazy">
+                        <source data-src="images/0001-0155.webm" type="video/webm">
+                        <source data-src="images/0001-0155.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>Logo Design</p>
                     </div>
-
+                </div>
             </div>
         </div>
     </section>
 	
-<section id="portfolio" class="my-portfolio">
-<div class="container">
+    <section id="portfolio-skyline" class="my-portfolio"> <!-- Changed ID to be unique -->
+        <div class="container">
             <h2>SKYLINE LOUNGE</h2>
-		    <div class="portfolio-grid">
-            <div class="portfolio-item">
-                    <img src="images/White.jpg" data-src="images/White.jpg" alt="Design 4">
+            <div class="portfolio-grid">
+                <!-- Skyline Lounge Image Portfolio Items -->
+                <div class="portfolio-item">
+                    <picture>
+                        <source srcset="images/White.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/White.jpg" 
+                             data-srcset="images/White_small.jpg 480w, images/White.jpg 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
-                    	</div>
-				</div>
-              <div class="portfolio-item">
-                    	<img src="images/friday.png" data-src="images/friday.png" alt="Design 4">
-                    	<div class="overlay">
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <picture>
+                        <source srcset="images/friday.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/friday.png" 
+                             data-srcset="images/friday_small.png 480w, images/friday.png 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
+                    <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
                     </div>
-				</div>
+                </div>
 					
-           	 <div class="portfolio-item">
-                	<img src="images/purple.png" data-src="images/purple.png" alt="Design 4">
+                <div class="portfolio-item">
+                    <picture>
+                        <source srcset="images/purple.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/purple.png" 
+                             data-srcset="images/purple_small.png 480w, images/purple.png 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
                     </div>    
-				</div>
-				   <div class="portfolio-item">
-                    	<img src="images/fire.jpg" data-src="images/fire.jpg" alt="Design 4">
-                    	<div class="overlay">
+                </div>
+                <div class="portfolio-item">
+                    <picture>
+                        <source srcset="images/fire.webp" type="image/webp">
+                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" 
+                             data-src="images/fire.jpg" 
+                             data-srcset="images/fire_small.jpg 480w, images/fire.jpg 1200w"
+                             data-sizes="(max-width: 600px) 480px, 1200px"
+                             alt="Design 4" loading="lazy">
+                    </picture>
+                    <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
                     </div>
-				</div>
-				<!--<video class="portfolio-item"  controls preload="none" poster="placeholder-image.jpg">
-					<source data-src="images/Clv_0.mp4" type="video/mp4">	
-				</video>-->
-					<div class="portfolio-item">
-                    <video src="images/Clv_0.mp4" data-src="images/Clv_0.mp4" alt="Design 4" autoplay muted>
+                </div>
+
+                <!-- Skyline Lounge Video Portfolio Items -->
+                <div class="portfolio-item">
+                    <video class="lazyload-video" controls preload="metadata" poster="images/Clv_0_poster.jpg" loading="lazy">
+                        <source data-src="images/Clv_0.webm" type="video/webm">
+                        <source data-src="images/Clv_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
                     </div>
                 </div> 
-                    <div class="portfolio-item">
-                    <video src="images/Clv1.mp4" data-src="images/Clv1.mp4" alt="Design 4" autoplay muted>
+                <div class="portfolio-item">
+                    <video class="lazyload-video" controls preload="metadata" poster="images/Clv1_poster.jpg" loading="lazy">
+                        <source data-src="images/Clv1.webm" type="video/webm">
+                        <source data-src="images/Clv1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
                     </div>
-				</div>
-                     <div class="portfolio-item">
-                    <video src="images/clv2.mp4" alt="Design 4" autoplay muted>
+                </div>
+                <div class="portfolio-item">
+                    <video class="lazyload-video" controls preload="metadata" poster="images/clv2_poster.jpg" loading="lazy">
+                        <source data-src="images/clv2.webm" type="video/webm">
+                        <source data-src="images/clv2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
                     </div>
-					</div>
-                     <div class="portfolio-item">
-                    <video src="images/Clv3.mp4" alt="Design 4" autoplay muted>
+                </div>
+                <div class="portfolio-item">
+                    <video class="lazyload-video" controls preload="metadata" poster="images/Clv3_poster.jpg" loading="lazy">
+                        <source data-src="images/Clv3.webm" type="video/webm">
+                        <source data-src="images/Clv3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
                     </div>
-					</div>
+                </div>
 				
-                     <div class="portfolio-item">
-                    <video src="images/arabic_1.mp4" alt="Design 4" autoplay muted>
+                <div class="portfolio-item">
+                    <video class="lazyload-video" controls preload="metadata" poster="images/arabic_1_poster.jpg" loading="lazy">
+                        <source data-src="images/arabic_1.webm" type="video/webm">
+                        <source data-src="images/arabic_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
                     </div>
-					</div>
-                     <div class="portfolio-item">
-                    <video src="images/Lv4.mp4" alt="Design 4" autoplay muted>
+                </div>
+                <div class="portfolio-item">
+                    <video class="lazyload-video" controls preload="metadata" poster="images/Lv4_poster.jpg" loading="lazy">
+                        <source data-src="images/Lv4.webm" type="video/webm">
+                        <source data-src="images/Lv4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     <div class="overlay">
                         <h4>Project Title 4</h4>
                         <p>advertisement</p>
                     </div>
-				</div>
-		     </div>
-		  </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-					</section>
     <section id="contact" class="contact-section">
         <div class="container">
             <h3>Get in Touch</h3>
             <h2>Let's Work Together!</h2>
-	    <p>henokzela46@gmail.com</p>
-	    <p>A.A, Ethiopia | +251945963393</p>
+            <p>henokzela46@gmail.com</p>
+            <p>A.A, Ethiopia | +251945963393</p>
             <form class="contact-form">
                 <input type="text" placeholder="Your Name" required>
                 <input type="email" placeholder="Your Email" required>
@@ -308,47 +466,24 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Henok zelalem. All Rights Reserved.</p>
+            <p>&copy; 2025 Henok Zelalem. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Image Modal -->
     <div id="imageModal" class="modal">
         <span class="close-button">&times;</span>
         <img class="modal-content" id="modalImage">
         <div id="caption"></div>
     </div>
-	<div id="videoModal" class="modal">
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
         <span class="close-button">&times;</span>
         <video id="modalVideo" class="modal-content" controls></video>
         <div id="videoCaption"></div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Defer JavaScript execution until HTML parsing is complete -->
+    <script src="script.js" defer></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
